@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Список услуг</title>
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/services.css">
+        <link rel="stylesheet" href="/css/modal.css">
+    </head>
+    <body>
+        <header th:replace="~{fragments/header :: header}"></header>
+
+        <section class="main-content">
+            <h2>Список послуг</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Назва</th>
+                        <th>Опис</th>
+                        <th>Ціна</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="service : ${services}" th:service="${service.id}">
+                        <td th:text="${service.name}"></td>
+                        <td th:text="${service.description}"></td>
+                        <td th:text="${service.price}"></td>
+                        <td class="button-container" th:if="${role == 'CLIENT'}">
+                            <input class="custom-button" type="button" value="Купити послугу" th:service="${service.id}"
+                                   onclick="createConfirm('Ви дійсно хочете купити цю послугу?', () => onConfirmService(this.getAttribute('service')))" >
+                        </td>
+                        <td class="button-container" th:if="${role == 'ADMIN'}">
+                            <input class="custom-button" type="button" value="Редагувати послугу" th:service="${service.id}"
+                                   onclick="window.location.href = '/admin/services/' + this.getAttribute('service')">
+                            <input class="custom-button" type="button" value="Видалити послугу" th:service="${service.id}"
+                                   onclick="createConfirm('Ви дійсно хочете видалити цю послугу?', () => deleteService(this.getAttribute('service')))">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <input class="custom-button" type="button" value="Додати послугу" onclick="window.location.href = '/admin/services'" th:if="${role == 'ADMIN'}"/>
+        </section>
+
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
+        <script src="/scripts/services.js"></script>
+        <script src="/scripts/utils.js"></script>
+    </body>
+</html>

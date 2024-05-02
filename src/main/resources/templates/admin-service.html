@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сервіс</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/modal.css">
+</head>
+<body>
+<header th:replace="~{fragments/header :: header}"></header>
+<div class="container main-content">
+    <h2>Створення послуги</h2>
+    <form id="service-form">
+        <div class="form-group">
+            <label for="name">Назва:</label>
+            <input type="text" id="name" name="name" required th:value="${service.name}"/>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Опис:</label>
+            <input type="text" id="description" name="description" required th:value="${service.description}"/>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Ціна:</label>
+            <input type="number" id="price" name="price" required th:value="${service.price}"/>
+        </div>
+
+        <input type="button" value="Зберегти" id="saveBtn"/>
+    </form>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+<script src="/scripts/admin-service.js"></script>
+<script src="/scripts/utils.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/register.css">
+        <link rel="stylesheet" href="/css/modal.css">
+        <title>Реєстрація</title>
+    </head>
+    <body>
+        <div class="register-container">
+            <h2>Реєстрація</h2>
+            <form action="/registration" method="post" id="register-form">
+                <input type="text" name="username" placeholder="Ім'я користувача" required>
+                <input type="password" name="password" placeholder="Пароль" required>
+                <input type="button" value="Зареєструватися" id="register-button">
+            </form>
+            <div class="login-link">
+                <a href="/login">Увійти</a>
+            </div>
+        </div>
+    <script src="/scripts/utils.js"></script>
+    <script src="/scripts/register.js"></script>
+    </body>
+</html>

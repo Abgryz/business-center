@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Профіль користувача</title>
+        <link rel="stylesheet" href="/css/profile.css">
+        <link rel="stylesheet" href="/css/services.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/modal.css">
+    </head>
+    <body>
+        <header th:replace="~{fragments/header :: header}"></header>
+        <div class="profile-container">
+            <h1>Профіль користувача</h1>
+            <div class="profile-info">
+                <div class="profile-details">
+                    <label for="name">Ім'я:</label>
+                    <input type="text" id="name" th:value="${name}"/>
+                    <button id="saveBtn">Зберегти зміни</button>
+
+                    <section id="rented-offices" th:if="${role == 'CLIENT'}">
+                        <h2>Арендовані офіси</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Назва</th>
+                                    <th>Адреса</th>
+                                    <th>Площа</th>
+                                    <th>Ціна</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="rent : ${rents}" th:rent="${rent.id}">
+                                    <td th:text="${rent.office.name}"></td>
+                                    <td th:text="${rent.office.address}"></td>
+                                    <td th:text="${rent.office.square}"></td>
+                                    <td th:text="${rent.office.price}"></td>
+                                    <td class="button-container">
+                                        <input class="custom-button" type="button" value="Відмінити аренду" th:rent="${rent.id}"
+                                               onclick="createConfirm('Ви дійсно хочете відмінити цю аренду?', () => deleteRent(this.getAttribute('rent')))">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="purchased-services" th:if="${role == 'CLIENT'}">
+                        <h2>Куплені послуги</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Назва</th>
+                                    <th>Опис</th>
+                                    <th>Ціна</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="serviceOrder : ${serviceOrders}" th:serviceOrder="${serviceOrder.id}">
+                                    <td th:text="${serviceOrder.service.name}"></td>
+                                    <td th:text="${serviceOrder.service.description}"></td>
+                                    <td th:text="${serviceOrder.service.price}"></td>
+                                    <td class="button-container">
+                                        <input class="custom-button" type="button" value="Відмінити послугу" th:serviceOrder="${serviceOrder.id}"
+                                               onclick="createConfirm('Ви дійсно хочете відмінити замовлення послуги?', () => deleteServiceOrder(this.getAttribute('serviceOrder')))">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </section>
+                </div>
+            </div>
+            <a href="/logout" class="logout">Вийти</a>
+        </div>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
+        <script src="/scripts/profile.js"></script>
+        <script src="/scripts/utils.js"></script>
+    </body>
+</html>

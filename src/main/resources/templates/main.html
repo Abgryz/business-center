@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бізнес центр</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header th:replace="~{fragments/header :: header}"></header>
+    <section>
+        <div class="hero-section">
+            <div>
+                <h1>Професійні бізнес-рішення</h1>
+                <p>Ми пропонуємо сучасні офісні приміщення та послуги для вашого бізнесу</p>
+            </div>
+        </div>
+        <div id="services" class="features-section">
+            <h2>Наші послуги</h2>
+            <div class="feature">
+                <h2>Аренда офісних приміщень</h2>
+                <p>Просторні офіси із сучасним обладнанням</p>
+            </div>
+            <div class="feature">
+                <h2>Конференц-зали</h2>
+                <p>Просторні зали для проведення важливих конференцій</p>
+            </div>
+            <div class="feature">
+                <h2>Дадаткові послуги</h2>
+                <p>Ресепшн, обслуговування, інтернет та інші зручності</p>
+            </div>
+        </div>
+    </section>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>
